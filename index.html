@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>gitsey Quotes</title>
+  <title>Walazi Quotes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <style>
     body { font-family: Arial; padding: 20px; background: #f4f4f4; }
@@ -12,39 +12,52 @@
   </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Get Your Website Quote</h2>
-    <label>Service:</label>
-    <select id="service">
-      <option value="Website">Website</option>
-      <option value="App">Android App</option>
-      <option value="Logo">Logo Design</option>
-    </select>
-    
-    <label>Package:</label>
-    <select id="package">
-      <option value="120000">Basic - MK 120,000</option>
-      <option value="250000">Standard - MK 250,000</option>
-      <option value="450000">Premium - MK 450,000</option>
-    </select>
-    <div id="details" style="background:#e8f5e9; padding:10px; border-radius:8px; margin:10px 0; font-size:14px;">
-  <b>Basic MK 120,000 includes:</b><br>
-  ✅ 5 Pages + Contact Form<br>
-  ✅ WhatsApp Button<br>
-  ✅ Mobile Friendly<br>
-  ✅ Free .com domain 1 year
-    
-    <button onclick="getQuote()">Get Quote on WhatsApp</button>
-  </div>
+<div id="details" style="background:#e8f5e9; padding:10px; border-radius:8px; margin:10px 0; font-size:14px;">
+  <b id="packageTitle">Basic MK 120,000 includes:</b><br>
+  <span id="packageDetails">
+    ✅ 5 Pages + Contact Form<br>
+    ✅ WhatsApp Button<br>
+    ✅ Mobile Friendly<br>
+    ✅ Free.com domain 1 year
+  </span>
+</div>
 
-  <script>
-    function getQuote() {
-      let service = document.getElementById('service').value;
-      let price = document.getElementById('package').value;
-      let packageName = document.getElementById('package').options[document.getElementById('package').selectedIndex].text;
-      let msg = `Hi Walazi. I want ${service}. Package: ${packageName}`;
-      window.open(`https://wa.me/265993262353?text=${encodeURIComponent(msg)}`, '_blank');
+<script>
+  const packageInfo = {
+    "120000": {
+      title: "Basic MK 120,000 includes:",
+      details: "✅ 5 Pages + Contact Form<br>✅ WhatsApp Button<br>✅ Mobile Friendly<br>✅ Free.com domain 1 year"
+    },
+    "250000": {
+      title: "Standard MK 250,000 includes:",
+      details: "✅ Everything in Basic<br>✅ 10 Pages + Blog<br>✅ Google Maps + SEO Setup<br>✅ 3 Months Support"
+    },
+    "450000": {
+      title: "Premium MK 450,000 includes:",
+      details: "✅ Everything in Standard<br>✅ Online Store / Booking System<br>✅ Payment Gateway: Airtel Money<br>✅ 6 Months Support + Training"
     }
-  </script>
+  };
+
+  document.getElementById('package').addEventListener('change', updateDetails);
+  
+  function updateDetails() {
+    let price = document.getElementById('package').value;
+    document.getElementById('packageTitle').innerHTML = packageInfo[price].title;
+    document.getElementById('packageDetails').innerHTML = packageInfo[price].details;
+  }
+
+  function getQuote() {
+    let service = document.getElementById('service').value;
+    let price = document.getElementById('package').value;
+    let packageName = document.getElementById('package').options[document.getElementById('package').selectedIndex].text;
+    let msg = `Hi Walazi. I want ${service}. Package: ${packageName}`;
+    window.open(`https://wa.me/265993262353?text=${encodeURIComponent(msg)}`, '_blank');
+  }
+  
+  // Run once on load
+  updateDetails();
+</script>
+
+
 </body>
 </html>
