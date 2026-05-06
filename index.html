@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Walazi Quotes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: Arial; padding: 20px; background: #f4f4f4; }
+    .card { background: white; padding: 20px; border-radius: 10px; max-width: 400px; margin: auto; }
+    button { width: 100%; padding: 15px; margin: 8px 0; background: #25D366; color: white; border: none; border-radius: 8px; font-size: 16px; }
+    select { width: 100%; padding: 12px; margin: 8px 0; }
+    h2 { color: #128C7E; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>Get Your Website Quote</h2>
+    <label>Service:</label>
+    <select id="service">
+      <option value="Website">Website</option>
+      <option value="App">Android App</option>
+      <option value="Logo">Logo Design</option>
+    </select>
+    
+    <label>Package:</label>
+    <select id="package">
+      <option value="120000">Basic - MK 120,000</option>
+      <option value="250000">Standard - MK 250,000</option>
+      <option value="450000">Premium - MK 450,000</option>
+    </select>
+    
+    <button onclick="getQuote()">Get Quote on WhatsApp</button>
+  </div>
+
+  <script>
+    function getQuote() {
+      let service = document.getElementById('service').value;
+      let price = document.getElementById('package').value;
+      let packageName = document.getElementById('package').options[document.getElementById('package').selectedIndex].text;
+      let msg = `Hi Walazi. I want ${service}. Package: ${packageName}`;
+      window.open(`https://wa.me/265993262353?text=${encodeURIComponent(msg)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
